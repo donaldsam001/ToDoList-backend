@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todos")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") // Cho phép Front-end gọi API
 public class TodoController {
 
     private final TodoService service;
