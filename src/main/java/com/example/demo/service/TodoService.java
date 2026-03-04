@@ -18,12 +18,18 @@ public class TodoService {
     }
 
     public Todo create(Todo todo) {
+        // Mặc định task mới tạo sẽ chưa hoàn thành
+        todo.setCompleted(false); 
         return repo.save(todo);
     }
 
     public Todo update(Long id, Todo todo) {
-        Todo t = repo.findById(id).orElseThrow();
+        Todo t = repo.findById(id).orElseThrow(() -> new RuntimeException("Todo not found"));
         t.setTitle(todo.getTitle());
+        
+        // Cập nhật thêm trường description
+        t.setDescription(todo.getDescription());
+        
         t.setCompleted(todo.isCompleted());
         return repo.save(t);
     }
